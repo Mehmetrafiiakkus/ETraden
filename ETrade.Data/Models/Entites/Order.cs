@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ETrade.Data.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,7 @@ namespace ETrade.Data.Models.Entites
         public string OrderNumber { get; set; }
         public decimal Total { get; set; }
         public DateTime OrderDate { get; set; }
-        //public EnumOrderState OrderState { get; set; }
-
+        public EnumOrderState OrderState { get; set; }
         public string Username { get; set; }
         public string AddressTitle { get; set; }
         public string Address { get; set; }

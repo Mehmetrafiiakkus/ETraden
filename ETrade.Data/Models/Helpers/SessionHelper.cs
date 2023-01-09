@@ -12,11 +12,11 @@ namespace ETrade.Data.Models.Helpers
     {
 
         public static int Count { get; set; }
-        public static void SetObjectJson(this ISession Session,string key, object value)
+        public static void SetObjectAsJson(this ISession Session,string key, object value)
         {
             Session.SetString(key, JsonConvert.SerializeObject(value));
         }
-        public static T GetObjectJson<T>(this ISession Session,string key)
+        public static T GetObjectFromJson<T>(this ISession Session,string key)
         {
             var value= Session.GetString(key);
             return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);

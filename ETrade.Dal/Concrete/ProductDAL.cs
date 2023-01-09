@@ -1,4 +1,5 @@
 ﻿using ETrade.Business.Concrete;
+using ETrade.Dal.Abstract;
 using ETrade.Data.Context;
 using ETrade.Data.Models.Entites;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ETrade.Dal.Concrete
 {
-    public class ProductDAL:GenericRepositiory<Product,ETradeContext>
+    public class ProductDAL:GenericRepositiory<Product,ETradeContext>,IProductDAL
     {
     }
 }

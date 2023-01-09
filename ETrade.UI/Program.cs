@@ -1,7 +1,18 @@
+using ETrade.Dal.Abstract;
+using ETrade.Dal.Concrete;
+using ETrade.Data.Context;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Dependency Injection
+builder.Services.AddDbContext<ETradeContext>();
+builder.Services.AddScoped<ICategoryDAl,CategoryDAL>();
+builder.Services.AddScoped<IProductDAL, ProductDAL>();
 
 var app = builder.Build();
 

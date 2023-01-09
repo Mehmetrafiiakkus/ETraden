@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETrade.Data.Context
+namespace ETrade.Data.Context 
 {
     public class ETradeContext:IdentityDbContext<AppUser,AppRole,int>
     {
