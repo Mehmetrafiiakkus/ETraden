@@ -16,6 +16,7 @@ namespace ETrade.Data.Models.Entites
         public decimal Price { get; set; }
         public bool IsHome { get; set; }
         public bool IsApproved { get; set; }
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
     }
 }

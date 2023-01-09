@@ -1,5 +1,6 @@
 ﻿using ETrade.Dal.Abstract;
 using ETrade.Data.Models.Entites;
+using ETrade.Data.Models.ViewModels;
 using ETrade.UI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -12,19 +13,41 @@ namespace ETrade.UI.Controllers
         private readonly IProductDAL _productDAL;
         private readonly ICategoryDAl _categoryDAl;
 
-        public HomeController(ILogger<HomeController> logger,IProductDAL product,ICategoryDAl category)
+        public HomeController(ILogger<HomeController> logger, IProductDAL product, ICategoryDAl category)
         {
             _logger = logger;
             _productDAL = product;
-            _categoryDAl= category;
+            _categoryDAl = category;
 
         }
 
         public IActionResult Index()
         {
-            var prodcut=_productDAL.GetAll(i=>i.IsHome && i.IsApproved); 
+            var prodcut = _productDAL.GetAll(i => i.IsHome && i.IsApproved);
             return View(prodcut);
 
+        }
+        public IActionResult List(int? id)
+        {
+            ViewBag.Id = id;
+            var productt = _productDAL.GetAll(i => i.IsApproved);
+            if (id != null)
+            {
+                productt = productt.Where(p => p.CategoryId == id).ToList();
+
+            }
+            var models = new ListViewModels()
+            {
+                Categories = _categoryDAl.GetAll(),
+                products = productt
+            };
+            return View(models);
+
+        }
+        public IActionResult Detailst(int id) {
+
+            var product = _productDAL.Get(id);
+            return View(product);
         }
 
         public IActionResult Privacy()
