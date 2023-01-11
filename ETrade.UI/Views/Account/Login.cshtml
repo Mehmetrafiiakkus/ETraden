@@ -1,0 +1,33 @@
+﻿@using ETrade.Data.Models.ViewModels
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>Login</h1>
+<hr />
+<form method="post">
+    <div class="form-group">
+        <div class="col-md-3">
+            @Html.LabelFor(m=>m.UserName)
+        </div>
+        <div class="col-md-9">
+            @Html.EditorFor(m=>m.UserName,new {@class = "form-control"})
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-3">
+            @Html.LabelFor(m=>m.Password)
+        </div>
+        <div class="col-md-9">
+            @Html.EditorFor(m=>m.Password,new {@class = "form-control"})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.CheckBoxFor(m=>m.RememberMe)
+        @Html.LabelFor(m=>m.RememberMe)
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Ok</button>
+    </div>
+</form>

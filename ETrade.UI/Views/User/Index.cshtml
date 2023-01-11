@@ -1,0 +1,29 @@
+﻿@using ETrade.Data.Models.Identity
+@model IEnumerable<AppUser>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Users</h1>
+<hr />
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="RoleAssign" asp-route-id="@item.Id">Role Assignment</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

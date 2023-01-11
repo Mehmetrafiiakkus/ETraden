@@ -54,6 +54,14 @@ namespace ETrade.UI.Controllers
             }
             return RedirectToAction("Index");
         }
+        public IActionResult Remove(int id)
+        {
+            var Card = SessionHelper.GetObjectFromJson<List<CardItem>>(HttpContext.Session, "card");
+            int index = isExist(Card, id);
+            Card.RemoveAt(index);
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "card", Card);
+            return RedirectToAction("Index");
+        }
 
         private int isExist(List<CardItem> card, int id)
         {

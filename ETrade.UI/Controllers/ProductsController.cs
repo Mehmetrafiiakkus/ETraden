@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ETrade.Data.Context;
 using ETrade.Data.Models.Entites;
+using Microsoft.Data.SqlClient;
 
 namespace ETrade.UI.Controllers
 {
@@ -46,6 +47,7 @@ namespace ETrade.UI.Controllers
         // GET: Products/Create
         public IActionResult Create()
         {
+            ViewData["CategoryList"] = new SelectList(_context.Category, "Id", "Name");
             return View();
         }
 
@@ -54,9 +56,9 @@ namespace ETrade.UI.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Img,Stock,Price,IsHome,IsApproved")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,CategoryId,Description,Img,Stock,Price,IsHome,IsApproved")] Product product)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _context.Add(product);
                 await _context.SaveChangesAsync();
